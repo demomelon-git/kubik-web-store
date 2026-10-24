@@ -1,0 +1,35 @@
+{
+  "generated": "2026-10-24T18:59:20Z",
+  "addons": [
+    {
+      "code": "kubik",
+      "title": "Кубик — главная и поиск",
+      "browser": "firefox",
+      "version": "1.3.0",
+      "file": "kubik-1.3.0.xpi",
+      "path": "adofire/kubik-1.3.0.xpi",
+      "size": 20761,
+      "sha256": "00605232a219fe529bced08729d41a63eae584d69e3f89950f7523045fd1041a"
+    },
+    {
+      "code": "kubik",
+      "title": "Кубик — главная и поиск",
+      "browser": "chrome",
+      "version": "2.0.2",
+      "file": "kubik-2.0.2.crx",
+      "path": "adocho/kubik-2.0.2.crx",
+      "size": 25794,
+      "sha256": "fdcd60af8af89b6d156b00d9ea28543aa6b4d5dd451f51ed2a48ac128ad97c7a"
+    },
+    {
+      "code": "kubik",
+      "title": "Кубик — главная и поиск",
+      "browser": "chrome",
+      "version": "2.1.0",
+      "file": "kubik-2.1.0.crx",
+      "path": "adocho/kubik-2.1.0.crx",
+      "size": 26449,
+      "sha256": "264fd725ece12a50d959bc73cd53e3316c03b3711a81097c8a3e640ab6db5f21"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "email": "demoda228@gmail.com",
+  "addons": [
+    {
+      "code": "kubik",
+      "name": "Кубик Веб-поиск",
+      "short": "Главная страница и метапоиск с помощником Кубиком: Google, Bing, Brave, DuckDuckGo и Startpage в одной выдаче.",
+      "main": true,
+      "pending": { "firefox": "2.1.0" }
+    }
+  ]
+}
