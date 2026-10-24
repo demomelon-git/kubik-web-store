@@ -22,3 +22,6 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:30px}
 .tabs{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}.tab{border:1px solid var(--line);background:none;color:var(--fg);border-radius:18px;padding:7px 16px;font:inherit;font-size:14px;cursor:pointer}.tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
 .short{color:var(--mut);margin:10px 0 0;font-size:15px}.engines{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;padding:0;list-style:none}.engines li{background:var(--soft);border-radius:14px;padding:4px 12px;font-size:13px}
 .back{display:inline-block;margin-top:6px;color:var(--blue);text-decoration:none;font-size:14px}
+.new{background:#34a853;color:#fff;border-radius:8px;padding:1px 8px;font-size:11px;vertical-align:middle}
+.upd{background:var(--blue);color:#fff;border-radius:16px;padding:10px 16px;margin:14px 0;font-size:14px}
+.stat{text-align:center;color:var(--mut);font-size:12px;margin-top:16px}.stat a{color:var(--blue)}
