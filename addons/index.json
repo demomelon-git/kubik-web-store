@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24T18:59:20Z",
+  "generated": "2026-10-24T19:38:49Z",
   "addons": [
     {
       "code": "kubik",
@@ -15,21 +15,21 @@
       "code": "kubik",
       "title": "Кубик — главная и поиск",
       "browser": "chrome",
-      "version": "2.0.2",
-      "file": "kubik-2.0.2.crx",
-      "path": "adocho/kubik-2.0.2.crx",
-      "size": 25794,
-      "sha256": "fdcd60af8af89b6d156b00d9ea28543aa6b4d5dd451f51ed2a48ac128ad97c7a"
-    },
-    {
-      "code": "kubik",
-      "title": "Кубик — главная и поиск",
-      "browser": "chrome",
       "version": "2.1.0",
       "file": "kubik-2.1.0.crx",
       "path": "adocho/kubik-2.1.0.crx",
       "size": 26449,
       "sha256": "264fd725ece12a50d959bc73cd53e3316c03b3711a81097c8a3e640ab6db5f21"
+    },
+    {
+      "code": "kubik",
+      "title": "Кубик — главная и поиск",
+      "browser": "chrome",
+      "version": "2.1.1",
+      "file": "kubik-2.1.1.crx",
+      "path": "adocho/kubik-2.1.1.crx",
+      "size": 27032,
+      "sha256": "11837469ac828e1b000ae140d737259b05f14f1813174fe29554376dc61541bd"
     }
   ]
 }
