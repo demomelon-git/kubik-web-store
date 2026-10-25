@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-25T11:35:52Z",
+  "generated": "2026-10-25T11:36:28Z",
   "addons": [
     {
       "code": "kubik",
@@ -30,6 +30,16 @@
       "path": "adocho/kubik-2.1.1.crx",
       "size": 27032,
       "sha256": "11837469ac828e1b000ae140d737259b05f14f1813174fe29554376dc61541bd"
+    },
+    {
+      "code": "kubik",
+      "title": "Кубик — главная и поиск",
+      "browser": "chrome",
+      "version": "2.2.0",
+      "file": "kubik-2.2.0.crx",
+      "path": "adocho/kubik-2.2.0.crx",
+      "size": 28250,
+      "sha256": "daf6f796dde1faaa492d7670336b49662da92d1d60f9a9e8e291757b57510b5f"
     },
     {
       "code": "kubikhost",
