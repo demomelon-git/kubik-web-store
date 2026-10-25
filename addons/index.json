@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-25T11:36:28Z",
+  "generated": "2026-10-25T13:39:30Z",
   "addons": [
     {
       "code": "kubik",
@@ -42,6 +42,16 @@
       "sha256": "daf6f796dde1faaa492d7670336b49662da92d1d60f9a9e8e291757b57510b5f"
     },
     {
+      "code": "kubik",
+      "title": "Кубик — главная и поиск",
+      "browser": "chrome",
+      "version": "2.3.0",
+      "file": "kubik-2.3.0.crx",
+      "path": "adocho/kubik-2.3.0.crx",
+      "size": 32236,
+      "sha256": "891a65d9f610de6ee85cf584a51e1ef3071a3d3688954035f56af998103a1f95"
+    },
+    {
       "code": "kubikhost",
       "title": "Кубик расширения",
       "browser": "chrome",
@@ -50,6 +60,16 @@
       "path": "adocho/kubikhost-0.1.0.crx",
       "size": 25853,
       "sha256": "e964dfbf4efb05f3e45729f32a25bb0de6015c68e4b930b6ff88bf91fc9b4895"
+    },
+    {
+      "code": "kubikstyle",
+      "title": "Кубик Стиль — главная и поиск",
+      "browser": "chrome",
+      "version": "2.3.0",
+      "file": "kubikstyle-2.3.0.crx",
+      "path": "adocho/kubikstyle-2.3.0.crx",
+      "size": 35927,
+      "sha256": "09c5a0305d835b8048488fa20060c2195525d0b3915d97823a1787b53414dcf5"
     }
   ]
 }
