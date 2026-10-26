@@ -8,6 +8,24 @@
           "update_hash": "sha256:00605232a219fe529bced08729d41a63eae584d69e3f89950f7523045fd1041a"
         }
       ]
+    },
+    "kubik-style@demomelon-git.github.io": {
+      "updates": [
+        {
+          "version": "2.3.0",
+          "update_link": "https://demomelon-git.github.io/kubik-web-store/addons/adofire/kubikstyle-2.3.0.xpi",
+          "update_hash": "sha256:27c37caa21bbbf3f5e25adf9cda4428ac6a49af127b8a295ca41ed60303b0fd7"
+        }
+      ]
+    },
+    "kubik-host@demomelon-git.github.io": {
+      "updates": [
+        {
+          "version": "0.1.0",
+          "update_link": "https://demomelon-git.github.io/kubik-web-store/addons/adofire/kubikhost-0.1.0.xpi",
+          "update_hash": "sha256:774134549eea93f703292afbb286d6bb1da9602972e6b4b639705018fb960880"
+        }
+      ]
     }
   }
 }
