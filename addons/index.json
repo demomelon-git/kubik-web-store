@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-25T13:39:30Z",
+  "generated": "2026-10-26T07:18:31Z",
   "addons": [
     {
       "code": "kubik",
@@ -10,6 +10,26 @@
       "path": "adofire/kubik-1.3.0.xpi",
       "size": 20761,
       "sha256": "00605232a219fe529bced08729d41a63eae584d69e3f89950f7523045fd1041a"
+    },
+    {
+      "code": "kubikhost",
+      "title": "Кубик расширения",
+      "browser": "firefox",
+      "version": "0.1.0",
+      "file": "kubikhost-0.1.0.xpi",
+      "path": "adofire/kubikhost-0.1.0.xpi",
+      "size": 34199,
+      "sha256": "774134549eea93f703292afbb286d6bb1da9602972e6b4b639705018fb960880"
+    },
+    {
+      "code": "kubikstyle",
+      "title": "Кубик Стиль — главная и поиск",
+      "browser": "firefox",
+      "version": "2.3.0",
+      "file": "kubikstyle-2.3.0.xpi",
+      "path": "adofire/kubikstyle-2.3.0.xpi",
+      "size": 35296,
+      "sha256": "27c37caa21bbbf3f5e25adf9cda4428ac6a49af127b8a295ca41ed60303b0fd7"
     },
     {
       "code": "kubik",
