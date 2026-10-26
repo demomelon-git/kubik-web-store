@@ -1,0 +1,13 @@
+{
+  "addons": {
+    "kubik-android@local.example": {
+      "updates": [
+        {
+          "version": "1.3.0",
+          "update_link": "https://demomelon-git.github.io/kubik-web-store/addons/adofire/kubik-1.3.0.xpi",
+          "update_hash": "sha256:00605232a219fe529bced08729d41a63eae584d69e3f89950f7523045fd1041a"
+        }
+      ]
+    }
+  }
+}

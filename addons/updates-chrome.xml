@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
+  <app appid='dommdbdphfnlgamocgilpbigigkpanil'><updatecheck codebase='https://demomelon-git.github.io/kubik-web-store/addons/adocho/kubik-2.3.0.crx' version='2.3.0' hash_sha256='891a65d9f610de6ee85cf584a51e1ef3071a3d3688954035f56af998103a1f95'/></app>
+  <app appid='ojldnojnfjibibnjdmagbphjokemmkfk'><updatecheck codebase='https://demomelon-git.github.io/kubik-web-store/addons/adocho/kubikstyle-2.3.0.crx' version='2.3.0' hash_sha256='09c5a0305d835b8048488fa20060c2195525d0b3915d97823a1787b53414dcf5'/></app>
+  <app appid='enlhjjdejdobhchnkgkeohlhcooecocm'><updatecheck codebase='https://demomelon-git.github.io/kubik-web-store/addons/adocho/kubikhost-0.1.0.crx' version='0.1.0' hash_sha256='e964dfbf4efb05f3e45729f32a25bb0de6015c68e4b930b6ff88bf91fc9b4895'/></app>
+</gupdate>
