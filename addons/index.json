@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T08:10:58Z",
+  "generated": "2026-10-26T08:11:27Z",
   "addons": [
     {
       "code": "kubik",
@@ -90,6 +90,36 @@
       "path": "adocho/kubikstyle-2.3.0.crx",
       "size": 35927,
       "sha256": "09c5a0305d835b8048488fa20060c2195525d0b3915d97823a1787b53414dcf5"
+    },
+    {
+      "code": "kubikgh",
+      "title": "Кубик для GitHub",
+      "browser": "kubik",
+      "version": "1.0.0",
+      "file": "kubikgh-1.0.0.kubik",
+      "path": "kubik/kubikgh-1.0.0.kubik",
+      "size": 3816,
+      "sha256": "7f1f1ba916893adc492cbaf1038109c9252d4abf0d8141fcbb2cd7853c981755"
+    },
+    {
+      "code": "kubikweb",
+      "title": "Кубик Веб-поиск",
+      "browser": "kubik",
+      "version": "1.0.0",
+      "file": "kubikweb-1.0.0.kubik",
+      "path": "kubik/kubikweb-1.0.0.kubik",
+      "size": 12452,
+      "sha256": "df52166d6702e91041450c44160dfd9e10c72e61456edf337bfb3d2557ff1665"
+    },
+    {
+      "code": "kubikweb",
+      "title": "Кубик Веб-поиск",
+      "browser": "kubik",
+      "version": "1.0.1",
+      "file": "kubikweb-1.0.1.kubik",
+      "path": "kubik/kubikweb-1.0.1.kubik",
+      "size": 12286,
+      "sha256": "30250b2c05b442223352fe4117e859cf5c156f61d38d8ed764cbc7849de53840"
     }
   ]
 }
