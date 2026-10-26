@@ -1,0 +1,27 @@
+{
+  "id": "kubikgh",
+  "name": "Кубик для GitHub",
+  "version": "1.0.0",
+  "author": "demomelon-git",
+  "description": "Обзор репозиториев GitHub и установка пакетов .kubik прямо из них. Умеет просить «Кубик Веб-поиск» найти проект.",
+  "entries": {
+    "main": "index.html"
+  },
+  "permissions": {
+    "hosts": [
+      "api.github.com",
+      "github.com",
+      "raw.githubusercontent.com",
+      "objects.githubusercontent.com",
+      "release-assets.githubusercontent.com",
+      "demomelon-git.github.io"
+    ],
+    "capabilities": [
+      "install"
+    ]
+  },
+  "provides": [],
+  "requires": {
+    "host": "0.1.0"
+  }
+}
