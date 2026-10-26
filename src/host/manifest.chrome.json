@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "Кубик расширения",
+  "version": "0.1.0",
+  "description": "Оболочка для внутренних расширений в формате .kubik: они ставятся прямо в Кубик, общаются друг с другом и запускают главную страницу и поиск.",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "https://www.google.com/*",
+    "https://consent.google.com/*",
+    "https://demomelon-git.github.io/*",
+    "https://api.github.com/*",
+    "https://127.0.0.1/*",
+    "http://127.0.0.1/*"
+  ],
+  "optional_host_permissions": [
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "chrome_url_overrides": {
+    "newtab": "app.html"
+  },
+  "omnibox": {
+    "keyword": "kx"
+  },
+  "sandbox": {
+    "pages": [
+      "sandbox.html"
+    ]
+  },
+  "content_security_policy": {
+    "sandbox": "sandbox allow-scripts allow-forms allow-popups; script-src 'self' 'unsafe-eval'; object-src 'self'"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/search*",
+        "https://www.google.com/sorry/*",
+        "https://consent.google.com/*"
+      ],
+      "js": [
+        "shim.js",
+        "content-google.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "app.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "update_url": "https://demomelon-git.github.io/kubik-web-store/addons/updates-chrome.xml"
+}
