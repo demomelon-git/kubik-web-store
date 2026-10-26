@@ -1,0 +1,37 @@
+{
+  "id": "kubikweb",
+  "name": "Кубик Веб-поиск",
+  "version": "1.0.1",
+  "author": "demomelon-git",
+  "description": "Главная страница и метапоиск: Google, Bing, Brave, DuckDuckGo и Startpage в одной выдаче. Отвечает на сообщения {type:'search'} от других расширений.",
+  "entries": {
+    "newtab": "newtab.html",
+    "search": "results.html",
+    "main": "newtab.html"
+  },
+  "service": {
+    "scripts": [
+      "engines.js",
+      "service.js"
+    ]
+  },
+  "permissions": {
+    "hosts": [
+      "www.bing.com",
+      "api.bing.com",
+      "search.brave.com",
+      "html.duckduckgo.com",
+      "www.startpage.com"
+    ],
+    "capabilities": [
+      "google"
+    ]
+  },
+  "provides": [
+    "search",
+    "newtab"
+  ],
+  "requires": {
+    "host": "0.1.0"
+  }
+}
