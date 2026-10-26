@@ -4,8 +4,8 @@
 Версия и название читаются из manifest.json внутри файла (имя файла нужно только для кода)."""
 import os, re, json, zipfile, hashlib, datetime
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'addons')
-DIRS = {'adofire': ('firefox', '.xpi'), 'adocho': ('chrome', '.crx'), 'kubik': ('kubik', '.kubik')}
-pat = re.compile(r'^(?P<code>[a-z0-9]+)-(?P<ver>\d+(?:[._]\d+)*)\.(xpi|crx|kubik)$')
+DIRS = {'adofire': ('firefox', '.xpi'), 'adocho': ('chrome', '.crx'), 'kubik': ('kubik', '.kubik'), 'adoyan': ('yandex', '.zip')}
+pat = re.compile(r'^(?P<code>[a-z0-9]+)-(?P<ver>\d+(?:[._]\d+)*)\.(xpi|crx|kubik|zip)$')
 items = []
 for folder, (browser, ext) in DIRS.items():
     d = os.path.join(root, folder)
