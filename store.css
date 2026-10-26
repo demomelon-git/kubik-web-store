@@ -25,3 +25,5 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:30px}
 .new{background:#34a853;color:#fff;border-radius:8px;padding:1px 8px;font-size:11px;vertical-align:middle}
 .upd{background:var(--blue);color:#fff;border-radius:16px;padding:10px 16px;margin:14px 0;font-size:14px}
 .stat{text-align:center;color:var(--mut);font-size:12px;margin-top:16px}.stat a{color:var(--blue)}
+.btn.big{font-size:18px;padding:14px 30px;margin-top:10px}
+.card.hl{outline:3px solid var(--blue)}

@@ -1,7 +1,7 @@
 Kubik.make(document.getElementById('m'));
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const BASE=document.body.dataset.base||'',MODE=document.body.dataset.mode||'store';
-const NAMES={firefox:'Firefox',chrome:'Chrome / Chromium'},DIR={firefox:'addons/adofire/',chrome:'addons/adocho/'},EXT={firefox:'.xpi',chrome:'.crx'};
+const NAMES={firefox:'Firefox',chrome:'Chrome / Chromium',kubik:'Кубик (.kubik)'},DIR={firefox:'addons/adofire/',chrome:'addons/adocho/',kubik:'addons/kubik/'},EXT={firefox:'.xpi',chrome:'.crx',kubik:'.kubik'};
 const ua=navigator.userAgent,brands=(navigator.userAgentData&&navigator.userAgentData.brands||[]).map(b=>b.brand).join(' ');
 const detected=/Firefox\/|FxiOS/.test(ua)?'firefox':(/Chrome\/|Chromium\/|CriOS/.test(ua)||/Chromium|Google Chrome/.test(brands))?'chrome':'other';
 let cur=new URLSearchParams(location.search).get('b')||(detected=='other'?'firefox':detected),CAT={addons:[]},IDX=[];
@@ -19,20 +19,21 @@ function card(ad){
  return h+'</div>'}
 function render(){
  $('#det').textContent=detected=='firefox'?'Твой браузер: Firefox':detected=='chrome'?'Твой браузер: Chrome / Chromium':'Браузер не распознан: выбери вручную';
- $('#tabs').innerHTML=['firefox','chrome'].map(b=>`<button class="tab${b==cur?' on':''}" data-b="${b}">${NAMES[b]}${b==detected?' ✓':''}</button>`).join('');
+ $('#tabs').innerHTML=['firefox','chrome','kubik'].map(b=>`<button class="tab${b==cur?' on':''}" data-b="${b}">${NAMES[b]}${b==detected?' ✓':''}</button>`).join('');
  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cur=t.dataset.b;render()});
- const main=CAT.addons.filter(a=>a.main),rest=CAT.addons.filter(a=>!a.main);
+ const vis=a=>IDX.some(x=>x.code==a.code&&x.browser==cur)||(a.pending&&a.pending[cur]),main=CAT.addons.filter(a=>a.main&&vis(a)),rest=CAT.addons.filter(a=>!a.main&&vis(a));
  let h=main.map(card).join('');
  if(MODE=='store'){
-  h+='<h3>Другие расширения</h3>'+(rest.length?rest.map(card).join(''):'<div class="card"><p class="short">Пока здесь только Кубик Веб-поиск.</p></div>');
+  if(cur=='kubik')h+='<div class="card"><h2>Что такое .kubik</h2><p class="short">Внутренние расширения для «Кубик расширения»: они ставятся прямо в него, общаются друг с другом и не требуют подписи Mozilla или Google. Сначала поставь «Кубик расширения» для своего браузера (вкладки Firefox или Chrome), потом открой его менеджер и выбери файл .kubik или найди пакет в каталоге.</p></div>';
+  h+='<h3>'+(cur=='kubik'?'Внутренние расширения':'Другие расширения')+'</h3>'+(rest.length?rest.map(card).join(''):'<div class="card"><p class="short">Здесь пока ничего нет.</p></div>');
   const body=encodeURIComponent('Название расширения:\nКороткий код (например, dark rander → dr):\nБраузер (Firefox / Chrome):\nВерсия:\nСсылка на файл или репозиторий:\nКоротко, что делает:\n');
   h+=`<div class="card"><h2>Добавить своё расширение</h2><p class="short">Отправь письмо с названием, коротким кодом, версией и ссылкой на файл. Для Firefox нужен файл .xpi с подписью Mozilla, для Chrome — .crx.</p><a class="btn" href="mailto:${esc(CAT.email||'demoda228@gmail.com')}?subject=${encodeURIComponent('Добавить расширение в Кубик Web Store')}&body=${body}">Написать на ${esc(CAT.email||'demoda228@gmail.com')}</a></div>`}
  $('#list').innerHTML=h}
-const PARSE=/^([a-z0-9]+)-(\d+(?:[._]\d+)*)\.(xpi|crx)$/;
+const PARSE=/^([a-z0-9]+)-(\d+(?:[._]\d+)*)\.(xpi|crx|kubik)$/;
 const repoName=()=>{const h=location.hostname;if(h.endsWith('.github.io')){const r=location.pathname.split('/')[1];if(r)return h.split('.')[0]+'/'+r}return 'demomelon-git/kubik-web-store'};
 // Список файлов берём прямо из репозитория (GitHub API), поэтому новая версия видна сразу после загрузки файла
 async function liveList(){const repo=repoName(),res=[];
- for(const [folder,browser,ext] of [['adofire','firefox','.xpi'],['adocho','chrome','.crx']]){
+ for(const [folder,browser,ext] of [['adofire','firefox','.xpi'],['adocho','chrome','.crx'],['kubik','kubik','.kubik']]){
   const r=await fetch(`https://api.github.com/repos/${repo}/contents/addons/${folder}`,{headers:{Accept:'application/vnd.github+json'},cache:'no-cache'});
   if(!r.ok)throw new Error('api '+r.status);
   (await r.json()).forEach(f=>{const m=PARSE.exec(f.name||'');if(!m||!f.name.endsWith(ext))return;res.push({code:m[1],browser,version:m[2].replace(/_/g,'.'),file:f.name,path:folder+'/'+f.name,size:f.size,sha256:null})})}

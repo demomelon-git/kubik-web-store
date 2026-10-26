@@ -1,13 +1,14 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Кубик Web Store</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="store.css"></head><body data-base="" data-mode="store">
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Кубик — главный сайт</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="store.css"></head><body>
 <main class="wrap">
 <div class="hero"><div class="mascot" id="m"></div>
-<h1 class="logo"><span style="color:#ea4335">К</span><span style="color:#fbbc05">у</span><span style="color:#4285f4">б</span><span style="color:#34a853">и</span><span style="color:#ea4335">к</span> Web Store<small>дополнения для Firefox и Chrome</small></h1>
-<div class="det" id="det">Определяю браузер…</div>
-<div class="tabs" id="tabs"></div>
-<a class="back" href="kubikwebs/">О главном расширении «Кубик Веб-поиск» →</a></div>
-<div class="upd" id="upd" hidden></div>
-<div id="list"></div>
-<div class="stat" id="stat"></div>
-<footer>Firefox: <code>addons/adofire/</code> · Chrome: <code>addons/adocho/</code> · список обновляется автоматически ага</footer>
+<h1 class="logo"><span style="color:#ea4335">К</span><span style="color:#fbbc05">у</span><span style="color:#4285f4">б</span><span style="color:#34a853">и</span><span style="color:#ea4335">к</span><small>свой поиск и свои расширения для Firefox и Chrome</small></h1>
+<a class="btn big" href="store/">Открыть Кубик Web Store</a></div>
+<h3>Версии</h3>
+<div class="card" id="card-chrome"><h2>Chrome</h2><div class="meta" id="v-chrome">Проверяю…</div><p class="short">Кубик Веб-поиск для Chrome и браузеров на Chromium (Titanium и другие): главная страница, метапоиск из пяти систем, картинки и видео, проверка обновлений. Две версии: обычная и «Кубик Стиль» (своя картинка помощника, фон и оформление интерфейса).</p><a class="btn" href="store/?b=chrome">Скачать для Chrome</a></div>
+<div class="card" id="card-firefox"><h2>Firefox</h2><div class="meta" id="v-firefox">Проверяю…</div><p class="short">Те же две версии (обычная и «Кубик Стиль») для Firefox и Fennec на Android, с подписью Mozilla и автообновлением.</p><a class="btn" href="store/?b=firefox">Скачать для Firefox</a></div>
+<div class="card"><h2>Кубик <span class="new">скоро</span></h2><div class="meta" id="v-kubik">Предварительная версия</div><p class="short"><b>Кубик расширения</b> — дом для внутренних расширений в формате <code>.kubik</code>. Они ставятся прямо в него, общаются друг с другом, а главный поиск запускается по ID этого расширения. Кубик пока только выходит: сейчас доступна предварительная версия, а первые внутренние расширения — «Кубик Веб-поиск» и «Кубик для GitHub» — уже лежат в магазине.</p><a class="btn" href="store/?b=kubik">Смотреть в магазине</a></div>
+<h3>Как это связано</h3>
+<div class="card"><p class="short">Простые версии для Chrome и Firefox работают сами по себе и обновляются через магазин. Версия «Кубик» запускает то же самое как внутреннее расширение: Chrome и Firefox ведут себя почти одинаково, различается только упаковка. Подробнее о главном расширении: <a href="kubikwebs/">Кубик Веб-поиск</a>.</p></div>
+<footer>Добавить своё расширение: <a href="mailto:demoda228@gmail.com">demoda228@gmail.com</a></footer>
 </main>
-<script src="mascot.js"></script><script src="store.js"></script></body></html>
+<script src="mascot.js"></script><script src="main.js"></script></body></html>
