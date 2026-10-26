@@ -1,7 +1,7 @@
 name: Обновить список дополнений
 on:
   push:
-    paths: ['addons/adofire/**', 'addons/adocho/**']
+    paths: ['addons/adofire/**', 'addons/adocho/**', 'addons/kubik/**', 'addons/catalog.json']
   workflow_dispatch:
 permissions:
   contents: write
@@ -15,6 +15,5 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add addons/index.json
-          git diff --cached --quiet || (git commit -m "Обновить addons/index.json" && git push)
-          
+          git add addons/index.json addons/updates-firefox.json addons/updates-chrome.xml
+          git diff --cached --quiet || (git commit -m "Обновить список и файлы обновлений" && git push)
