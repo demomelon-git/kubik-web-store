@@ -10,6 +10,7 @@ kubikwebs/             страница главного расширения «
 addons/
   adofire/             Firefox: .xpi с подписью Mozilla (не zip)
   adocho/              Chrome: .crx (не zip)
+  adoyan/              Яндекс Браузер: zip (он не принимает .crx), собирается tools/build-yandex.py
   kubik/               внутренние расширения .kubik
   catalog.json         названия, описания, ID, ожидающие версии
   index.json           список файлов (создаётся скриптом)
@@ -17,7 +18,7 @@ addons/
 src/firefox, src/chrome   простой «Кубик Веб-поиск»; src/style — надстройка «Кубик Стиль» (картинка помощника, фон, темы, вид интерфейса)
 src/host               «Кубик расширения» (оболочка для .kubik)
 src/kubik/*            исходники внутренних расширений
-tools/                 build-search.py (обычный Кубик и Кубик Стиль), build-crx.py, build-host.py, make-index.py
+tools/                 build-yandex.py (версии для Яндекс Браузера), build-search.py (обычный Кубик и Кубик Стиль), build-crx.py, build-host.py, make-index.py
 FORMAT.md              формат .kubik и API
 ```
 
