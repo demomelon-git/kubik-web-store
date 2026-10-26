@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Кубик — главная и поиск",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "Главная страница и поиск с помощником Кубиком. Результаты нескольких поисковых систем в одной выдаче.",
   "icons": {
     "48": "icon.svg",
@@ -15,7 +15,8 @@
         "required": [
           "searchTerms"
         ]
-      }
+      },
+      "update_url": "https://demomelon-git.github.io/kubik-web-store/addons/updates-firefox.json"
     },
     "gecko_android": {
       "strict_min_version": "114.0"
@@ -35,7 +36,10 @@
     "https://generativelanguage.googleapis.com/*",
     "https://html.duckduckgo.com/*",
     "https://duckduckgo.com/*",
-    "https://www.startpage.com/*"
+    "https://www.startpage.com/*",
+    "https://api.github.com/*",
+    "https://demomelon-git.github.io/*",
+    "https://www.youtube.com/*"
   ],
   "background": {
     "scripts": [
@@ -43,16 +47,18 @@
     ]
   },
   "web_accessible_resources": [
-    "newtab.html",
-    "results.html",
-    "style.css",
-    "mascot.js",
-    "common.js",
     "assistant.js",
+    "common.js",
     "engines.js",
+    "extras.js",
+    "icon.svg",
+    "mascot.js",
+    "newtab.html",
     "newtab.js",
+    "results.html",
     "results.js",
-    "icon.svg"
+    "style.css",
+    "update.js"
   ],
   "chrome_url_overrides": {
     "newtab": "newtab.html"
