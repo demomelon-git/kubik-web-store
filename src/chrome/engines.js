@@ -79,3 +79,36 @@ async function startpage(q,s){
  if(!out.length){if(/captcha/i.test(html))return{results:[],error:'капча Startpage'};
   doc.querySelectorAll('script,style').forEach(e=>e.remove());return{results:[],debug:{status:r.status,title:T(doc.querySelector('title')),size:html.length,text:T(doc.body).slice(0,160)}}}
  return{results:out}}
+
+// ---------- Картинки и видео ----------
+const absB=h=>{try{return new URL(h,'https://www.bing.com').href}catch(e){return''}};
+async function bingImages(q,s){const r=await fetch('https://www.bing.com/images/async?q='+encodeURIComponent(q)+'&first='+(s+1)+'&count=35&mmasync=1&setlang=ru&mkt=ru-RU&cc=RU',{credentials:'omit'});
+ if(!r.ok)return{results:[],error:'HTTP '+r.status};
+ const html=await r.text(),doc=new DOMParser().parseFromString(html,'text/html'),out=[],used=new Set();
+ doc.querySelectorAll('a[m]').forEach(a=>{let j;try{j=JSON.parse(a.getAttribute('m'))}catch(e){return}
+  const full=j&&j.murl;if(!full||used.has(full))return;used.add(full);out.push({img:full,thumb:j.turl||full,title:cut(j.t||'',120),page:j.purl||full})});
+ if(!out.length)doc.querySelectorAll('img.mimg').forEach(i=>{const src=absB(i.getAttribute('src')||i.getAttribute('data-src')||'');if(!/^https?:/.test(src)||used.has(src))return;used.add(src);const a=i.closest('a');out.push({img:src,thumb:src,title:cut(i.getAttribute('alt')||'',120),page:a?absB(a.getAttribute('href')):src})});
+ if(!out.length){doc.querySelectorAll('script,style').forEach(e=>e.remove());return{results:[],debug:{status:r.status,size:html.length,withM:doc.querySelectorAll('[m]').length,text:T(doc.body).slice(0,160)}}}
+ return{results:out}}
+async function bingVideos(q,s){const r=await fetch('https://www.bing.com/videos/search?q='+encodeURIComponent(q)+'&setlang=ru&mkt=ru-RU&cc=RU&first='+(s+1),{credentials:'omit'});
+ if(!r.ok)return{results:[],error:'HTTP '+r.status};
+ const html=await r.text(),doc=new DOMParser().parseFromString(html,'text/html'),out=[],used=new Set();
+ doc.querySelectorAll('[vrhm]').forEach(e=>{let j;try{j=JSON.parse(e.getAttribute('vrhm'))}catch(x){return}
+  const url=j&&(j.murl||j.pgurl||j.purl);if(!url||used.has(url))return;used.add(url);const im=e.querySelector('img');
+  const th=j.turl||j.thumb||(im&&(im.getAttribute('src')||im.getAttribute('data-src')))||'';
+  out.push({url,title:cut(j.vt||j.t||j.title||T(e.querySelector('.mc_vtvc_title'))||url,140),thumb:th?absB(th):'',dur:j.du||'',by:j.ch||j.pub||''})});
+ if(!out.length){const HOSTS=/(youtube\.com\/watch|youtu\.be\/|vimeo\.com\/\d|rutube\.ru\/video|dailymotion\.com\/video|vk\.com\/video)/;
+  doc.querySelectorAll('a[href]').forEach(a=>{const u=a.getAttribute('href')||'';if(!HOSTS.test(u)||used.has(u))return;const im=a.querySelector('img'),t=T(a);if(t.length<4&&!im)return;used.add(u);
+   const th=im?(im.getAttribute('src')||im.getAttribute('data-src')||''):'';out.push({url:u,title:cut(t||(im&&im.getAttribute('alt'))||u,140),thumb:th?absB(th):'',dur:'',by:''})})}
+ if(!out.length){doc.querySelectorAll('script,style').forEach(e=>e.remove());return{results:[],debug:{status:r.status,size:html.length,withVrhm:doc.querySelectorAll('[vrhm]').length,text:T(doc.body).slice(0,160)}}}
+ return{results:out}}
+function parseYT(html){const i=html.indexOf('ytInitialData');if(i<0)return null;const a=html.indexOf('{',i),b=html.indexOf(';</script>',a);if(a<0||b<0)return null;
+ let d;try{d=JSON.parse(html.slice(a,b))}catch(e){return null}
+ const found=[],walk=o=>{if(!o||typeof o!=='object')return;if(o.videoRenderer&&o.videoRenderer.videoId){found.push(o.videoRenderer);return}for(const k in o)walk(o[k])};walk(d);
+ return found.map(v=>({url:'https://www.youtube.com/watch?v='+v.videoId,title:cut(((v.title&&v.title.runs)||[]).map(x=>x.text).join('')||'Видео',140),thumb:'https://i.ytimg.com/vi/'+v.videoId+'/mqdefault.jpg',
+  dur:(v.lengthText&&v.lengthText.simpleText)||'',by:(v.ownerText&&v.ownerText.runs&&v.ownerText.runs[0]&&v.ownerText.runs[0].text)||'',views:(v.viewCountText&&v.viewCountText.simpleText)||''}))}
+async function youtube(q,s){if(s)return{results:[]};const r=await fetch('https://www.youtube.com/results?search_query='+encodeURIComponent(q)+'&hl=ru&gl=RU',{credentials:'omit'});
+ if(!r.ok)return{results:[],error:'HTTP '+r.status};const html=await r.text(),res=parseYT(html);
+ if(!res)return{results:[],error:'YouTube не отдал список (возможно, окно согласия)',debug:{url:r.url,size:html.length}};return{results:res}}
+const vkey=u=>{try{const x=new URL(u);if(/(^|\.)youtube\.com$/.test(x.hostname)&&x.searchParams.get('v'))return'yt:'+x.searchParams.get('v');if(x.hostname==='youtu.be')return'yt:'+x.pathname.slice(1);return x.hostname.replace(/^www\./,'')+x.pathname}catch(e){return u}};
+function mergeVideos(lists){const m=new Map();lists.forEach(d=>((d&&d.results)||[]).forEach(v=>{const k=vkey(v.url);if(!m.has(k))m.set(k,Object.assign({},v));else{const o=m.get(k);for(const f of['thumb','dur','by','views'])if(!o[f]&&v[f])o[f]=v[f]}}));return[...m.values()]}

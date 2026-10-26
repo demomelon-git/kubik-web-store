@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Кубик — главная и поиск",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "Главная страница и поиск с помощником Кубиком. Результаты нескольких поисковых систем в одной выдаче.",
   "icons": {
     "16": "icon16.png",
@@ -25,7 +25,10 @@
     "http://127.0.0.1/*",
     "https://html.duckduckgo.com/*",
     "https://duckduckgo.com/*",
-    "https://www.startpage.com/*"
+    "https://www.startpage.com/*",
+    "https://api.github.com/*",
+    "https://demomelon-git.github.io/*",
+    "https://www.youtube.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -61,5 +64,6 @@
       ]
     }
   ],
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4Fzelt1eA1Ws2JOwqj/1QmjD91pFEkDu4NUqFSQwiqG/4NlkPEwFZkpT15JYmZbxuDR9oQEIVgwB9jGBPdb3K42ojvprAW30198F7l1MqnrvYALUUfvFIOxJm+XNsMpPUI9O59dXJ50FGO4ETnkW/yYZJFO3GL0HDnlEuOugoGwzQFzo3nwYYgzvpCgmT9wPbzba7ydsibkekSHzFyT6gq6tEVe7sFuc8w4aMRMhL4/7X9yYo7rA7+6Z6WgbK1pNfW0RmJDdTZcHq9FGKmjbNnSTVbPl0mxnDV5D/q8S9Ar1kaAFvUJm1g6TBb7kdwrxDxgXLW8+nREPSo7pUwCPkwIDAQAB"
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4Fzelt1eA1Ws2JOwqj/1QmjD91pFEkDu4NUqFSQwiqG/4NlkPEwFZkpT15JYmZbxuDR9oQEIVgwB9jGBPdb3K42ojvprAW30198F7l1MqnrvYALUUfvFIOxJm+XNsMpPUI9O59dXJ50FGO4ETnkW/yYZJFO3GL0HDnlEuOugoGwzQFzo3nwYYgzvpCgmT9wPbzba7ydsibkekSHzFyT6gq6tEVe7sFuc8w4aMRMhL4/7X9yYo7rA7+6Z6WgbK1pNfW0RmJDdTZcHq9FGKmjbNnSTVbPl0mxnDV5D/q8S9Ar1kaAFvUJm1g6TBb7kdwrxDxgXLW8+nREPSo7pUwCPkwIDAQAB",
+  "update_url": "https://demomelon-git.github.io/kubik-web-store/addons/updates-chrome.xml"
 }
