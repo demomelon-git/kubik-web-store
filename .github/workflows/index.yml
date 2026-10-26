@@ -1,7 +1,7 @@
 name: Обновить список дополнений
 on:
   push:
-    paths: ['addons/adofire/**', 'addons/adocho/**', 'addons/kubik/**', 'addons/catalog.json']
+    paths: ['addons/adofire/**', 'addons/adocho/**', 'addons/kubik/**', 'addons/adoyan/**', 'addons/catalog.json']
   workflow_dispatch:
 permissions:
   contents: write
