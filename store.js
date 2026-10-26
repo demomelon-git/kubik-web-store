@@ -4,31 +4,36 @@ const BASE=document.body.dataset.base||'',MODE=document.body.dataset.mode||'stor
 const NAMES={firefox:'Firefox',chrome:'Chrome / Chromium',kubik:'Кубик (.kubik)'},DIR={firefox:'addons/adofire/',chrome:'addons/adocho/',kubik:'addons/kubik/'},EXT={firefox:'.xpi',chrome:'.crx',kubik:'.kubik'};
 const ua=navigator.userAgent,brands=(navigator.userAgentData&&navigator.userAgentData.brands||[]).map(b=>b.brand).join(' ');
 const detected=/Firefox\/|FxiOS/.test(ua)?'firefox':(/Chrome\/|Chromium\/|CriOS/.test(ua)||/Chromium|Google Chrome/.test(brands))?'chrome':'other';
-let cur=new URLSearchParams(location.search).get('b')||(detected=='other'?'firefox':detected),CAT={addons:[]},IDX=[];
+let cur=new URLSearchParams(location.search).get('b')||(detected=='other'?'firefox':detected),CAT={addons:[]},IDX=[];if(MODE==='showcase'&&cur==='kubik')cur='firefox';
 const cmp=(a,b)=>{const x=a.split('.').map(Number),y=b.split('.').map(Number);for(let i=0;i<Math.max(x.length,y.length);i++){const d=(y[i]||0)-(x[i]||0);if(d)return d}return 0};
 const kb=n=>n>1048576?(n/1048576).toFixed(1)+' МБ':Math.max(1,Math.round(n/1024))+' КБ';
 const link=a=>BASE+'addons/'+a.path;
+const aboutHtml=ad=>MODE=='showcase'?(ad.about?`<p class="about">${esc(ad.about)}</p>`:'')+(ad.features&&ad.features.length?`<ul class="feat">${ad.features.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:'')+(ad.tags&&ad.tags.length?`<ul class="engines">${ad.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''):(ad.showcase?`<a class="more-l" href="${BASE}kubikwebs/#${esc(ad.code)}">Подробнее →</a>`:'');
 function card(ad){
  const items=IDX.filter(a=>a.code==ad.code&&a.browser==cur).sort((a,b)=>cmp(a.version,b.version)),top=items[0],pend=ad.pending&&ad.pending[cur],isNew=top&&PREV&&cmp(PREV[ad.code+'|'+cur]||'0',top.version)>0;
- let h=`<div class="card${ad.main?' main':''}"><div class="row"><img class="ico" src="${BASE}icon.svg" alt=""><div><h2>${esc(ad.name)}</h2><div class="meta">код <b>${esc(ad.code)}</b> · для ${NAMES[cur]}</div></div></div><p class="short">${esc(ad.short||'')}</p>`;
+ let h=`<div class="card${ad.main?' main':''}" id="p-${esc(ad.code)}"><div class="row"><img class="ico" src="${BASE}icon.svg" alt=""><div><h2>${esc(ad.name)}</h2><div class="meta">код <b>${esc(ad.code)}</b> · для ${NAMES[cur]}</div></div></div><p class="short">${esc(ad.short||'')}</p>${aboutHtml(ad)}`;
  h+=top?`<div class="meta">Версия ${esc(top.version)}${isNew?' <span class="new">новая</span>':''} · ${kb(top.size)} · ${esc(top.file)}</div><a class="btn" href="${esc(link(top))}" download>Скачать ${EXT[cur]}</a>`:`<span class="btn off">Файл пока не добавлен</span>`;
  if(pend&&(!top||cmp(top.version,pend)>0))h+=`<p class="note">Версия ${esc(pend)} для ${NAMES[cur]} готовится${cur=='firefox'?' и ждёт подписи Mozilla':''}.</p>`;
  if(cur=='chrome'&&top)h+=`<p class="note">Файл .crx ставится не везде: обычный Chrome на компьютере принимает дополнения только из магазина, а браузеры на Chromium (например, Titanium) могут установить файл напрямую.</p>`;
  if(top&&top.sha256)h+=`<div class="hash">SHA-256: ${esc(top.sha256)}</div>`;
  if(items.length>1)h+=`<details><summary>Старые версии (${items.length-1})</summary>${items.slice(1).map(a=>`<div><a href="${esc(link(a))}" download>${esc(a.file)}</a> · ${kb(a.size)}</div>`).join('')}</details>`;
  return h+'</div>'}
+const descCard=ad=>`<div class="card" id="p-${esc(ad.code)}"><div class="row"><img class="ico" src="${BASE}icon.svg" alt=""><div><h2>${esc(ad.name)}</h2><div class="meta">код <b>${esc(ad.code)}</b></div></div></div>${ad.about?`<p class="about">${esc(ad.about)}</p>`:`<p class="short">${esc(ad.short||'')}</p>`}${ad.features&&ad.features.length?`<ul class="feat">${ad.features.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}${ad.tags&&ad.tags.length?`<ul class="engines">${ad.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}<a class="more-l" href="${BASE}store/?b=${cur}#p-${esc(ad.code)}">Скачать →</a></div>`;
 function render(){
+ if(MODE=='showcase'){$('#list').innerHTML=CAT.addons.filter(a=>a.showcase).sort((a,b)=>(a.order||9)-(b.order||9)).map(descCard).join('');
+  if(!render.done&&location.hash.length>1){render.done=true;const e=document.getElementById('p-'+location.hash.slice(1));if(e)e.scrollIntoView()}return}
  $('#det').textContent=detected=='firefox'?'Твой браузер: Firefox':detected=='chrome'?'Твой браузер: Chrome / Chromium':'Браузер не распознан: выбери вручную';
- $('#tabs').innerHTML=['firefox','chrome','kubik'].map(b=>`<button class="tab${b==cur?' on':''}" data-b="${b}">${NAMES[b]}${b==detected?' ✓':''}</button>`).join('');
+ $('#tabs').innerHTML=(MODE=='showcase'?['firefox','chrome']:['firefox','chrome','kubik']).map(b=>`<button class="tab${b==cur?' on':''}" data-b="${b}">${NAMES[b]}${b==detected?' ✓':''}</button>`).join('');
  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cur=t.dataset.b;render()});
  const vis=a=>IDX.some(x=>x.code==a.code&&x.browser==cur)||(a.pending&&a.pending[cur]),main=CAT.addons.filter(a=>a.main&&vis(a)),rest=CAT.addons.filter(a=>!a.main&&vis(a));
- let h=main.map(card).join('');
+ let h=MODE=='showcase'?CAT.addons.filter(a=>a.showcase).sort((a,b)=>(a.order||9)-(b.order||9)).map(card).join(''):main.map(card).join('');
  if(MODE=='store'){
   if(cur=='kubik')h+='<div class="card"><h2>Что такое .kubik</h2><p class="short">Внутренние расширения для «Кубик расширения»: они ставятся прямо в него, общаются друг с другом и не требуют подписи Mozilla или Google. Сначала поставь «Кубик расширения» для своего браузера (вкладки Firefox или Chrome), потом открой его менеджер и выбери файл .kubik или найди пакет в каталоге.</p></div>';
   h+='<h3>'+(cur=='kubik'?'Внутренние расширения':'Другие расширения')+'</h3>'+(rest.length?rest.map(card).join(''):'<div class="card"><p class="short">Здесь пока ничего нет.</p></div>');
   const body=encodeURIComponent('Название расширения:\nКороткий код (например, dark rander → dr):\nБраузер (Firefox / Chrome):\nВерсия:\nСсылка на файл или репозиторий:\nКоротко, что делает:\n');
   h+=`<div class="card"><h2>Добавить своё расширение</h2><p class="short">Отправь письмо с названием, коротким кодом, версией и ссылкой на файл. Для Firefox нужен файл .xpi с подписью Mozilla, для Chrome — .crx.</p><a class="btn" href="mailto:${esc(CAT.email||'demoda228@gmail.com')}?subject=${encodeURIComponent('Добавить расширение в Кубик Web Store')}&body=${body}">Написать на ${esc(CAT.email||'demoda228@gmail.com')}</a></div>`}
- $('#list').innerHTML=h}
+ $('#list').innerHTML=h;
+ if(!render.done&&location.hash.length>1){render.done=true;const e=document.getElementById('p-'+location.hash.slice(1));if(e)e.scrollIntoView()}}
 const PARSE=/^([a-z0-9]+)-(\d+(?:[._]\d+)*)\.(xpi|crx|kubik)$/;
 const repoName=()=>{const h=location.hostname;if(h.endsWith('.github.io')){const r=location.pathname.split('/')[1];if(r)return h.split('.')[0]+'/'+r}return 'demomelon-git/kubik-web-store'};
 // Список файлов берём прямо из репозитория (GitHub API), поэтому новая версия видна сразу после загрузки файла
@@ -44,6 +49,7 @@ let KNOWN=null;
 async function load(first){
  const get=async u=>(await fetch(BASE+u,{cache:'no-cache'})).json();
  try{CAT=await get('addons/catalog.json')}catch(e){}
+ if(MODE==='showcase'){render();return}
  let fileIdx=[];try{fileIdx=(await get('addons/index.json')).addons||[]}catch(e){}
  let live=null,mode='live';try{live=await liveList()}catch(e){mode='index'}
  if(!live||!live.length){live=fileIdx;mode=mode=='live'?'index':mode}
@@ -59,5 +65,5 @@ async function load(first){
  $('#rf').onclick=e=>{e.preventDefault();load(false)};
  try{localStorage.setItem('kubikSeen',JSON.stringify(now))}catch(e){}}
 load(true).catch(()=>{$('#list').innerHTML='<div class="card">Не удалось загрузить список дополнений (<code>addons/catalog.json</code>, <code>addons/index.json</code>).</div>'});
-setInterval(()=>load(false).catch(()=>{}),300000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)load(false).catch(()=>{})});
+if(MODE!=='showcase')setInterval(()=>load(false).catch(()=>{}),300000);
+if(MODE!=='showcase')document.addEventListener('visibilitychange',()=>{if(!document.hidden)load(false).catch(()=>{})});

@@ -27,3 +27,4 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:30px}
 .stat{text-align:center;color:var(--mut);font-size:12px;margin-top:16px}.stat a{color:var(--blue)}
 .btn.big{font-size:18px;padding:14px 30px;margin-top:10px}
 .card.hl{outline:3px solid var(--blue)}
+.about{margin:10px 0;line-height:1.6;font-size:15px}.feat{margin:8px 0 12px;padding-left:20px;line-height:1.6;font-size:14px}.card .more-l{display:inline-block;margin-top:8px}

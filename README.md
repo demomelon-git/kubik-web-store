@@ -44,3 +44,6 @@ FORMAT.md              формат .kubik и API
 
 ## GitHub Pages
 Settings → Pages → ветка `main`, папка `/ (root)`. Адрес: https://demomelon-git.github.io/kubik-web-store/
+
+## catalog.json: описания
+Каждая запись: `code`, `name`, `short` (одна строка для карточки). Для страницы `kubikwebs/` добавь `"showcase": true`, `"order"` (порядок), `"about"` (абзац), `"features"` (список) и `"tags"` (значки). Страница сама подхватит правку, ничего пересобирать не нужно.
