@@ -1,19 +1,13 @@
-# Кубик Веб-поиск для Kopi
+# Кубик Веб-поиск для Kopi (.KD)
 
-Специальная сборка главной страницы для браузера Kopi в формате `.kd`.
+Пакет ZIP с расширением .kd.
 
-## Возможности
-- Регистрирует внутренний адрес `kubik://new_tab`.
-- Назначает его главной страницей через `kopi.set_new_tab()`.
-- Использует только HTML и JavaScript.
-- Предлагает переход к Google, Bing, Brave, DuckDuckGo и Startpage.
-- Содержит быстрые ссылки на `https://127.0.0.1/` и Kubik Web Store.
-- Запрашивает разрешения только для перечисленных в `extension.json` доменов.
+- `kd.json` — манифест, новая вкладка и список разрешений.
+- `newtab.html` — HTML-файл, который извлекает текущий KD-парсер.
+- `main.js` — регистрация `kubik://new_tab` и установка новой вкладки.
 
-## API Kopi
-Используются `kopi.register_site(schemeUrl, htmlContent)`, `kopi.set_new_tab(url)` и `kopi.request_permission(domain)`.
+## Реальный API текущего Kopi
 
-`kopi.get_data_kopi()` намеренно не вызывается: личные идентификаторы пользователя не нужны для работы поисковой главной страницы.
+Используются `window.kopi.register_site(url, html)` и `window.kopi.set_new_tab(url)`, которые в исходниках Kopi связаны с `KopiBrowserBridge.registerCustomScheme` и `KopiBrowserBridge.setNewTab`.
 
-## Упаковка
-Содержимое папки упаковывается в ZIP без родительской папки, затем архив получает расширение `.kd`.
+В просмотренном коде `kopi.request_permission()` не имеет соответствующего метода в Android bridge. Поэтому расширение не вызывает его: список доменов объявлен в `kd.json` для штатного диалога разрешений. `kopi.get_data_kopi()` не вызывается, так как личные данные для поиска не нужны.
