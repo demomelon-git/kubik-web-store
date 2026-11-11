@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build Kopi .kd ZIP packages from src/kopi/*."""
+import json
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
@@ -9,10 +10,9 @@ OUTPUT = ROOT / "addons" / "kopi"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
 for extension in sorted(p for p in SOURCE.iterdir() if p.is_dir()):
-    manifest = extension / "extension.json"
+    manifest = extension / "kd.json"
     if not manifest.is_file():
         continue
-    import json
     data = json.loads(manifest.read_text(encoding="utf-8"))
     filename = f"{data['id']}-{data['version']}.kd"
     target = OUTPUT / filename
