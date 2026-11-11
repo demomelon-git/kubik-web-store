@@ -13,5 +13,6 @@
     "https://www.startpage.com/*",
     "https://127.0.0.1/*",
     "https://demomelon-git.github.io/*"
-  ]
+  ],
+  "id": "kubikweb"
 }
