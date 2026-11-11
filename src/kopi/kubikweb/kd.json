@@ -1,0 +1,17 @@
+{
+  "name": "Кубик Веб-поиск для Kopi",
+  "version": "1.0.1",
+  "description": "Главная страница и быстрый поиск для браузера Kopi",
+  "author": "Demomelon",
+  "new_tab": "kubik://new_tab",
+  "custom_scheme": "kubik://new_tab",
+  "permissions": [
+    "https://www.google.com/*",
+    "https://www.bing.com/*",
+    "https://search.brave.com/*",
+    "https://duckduckgo.com/*",
+    "https://www.startpage.com/*",
+    "https://127.0.0.1/*",
+    "https://demomelon-git.github.io/*"
+  ]
+}
